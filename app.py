@@ -1,7 +1,7 @@
 import csv
 from flask import Flask, render_template, request, redirect, url_for
 import requests
-from pager import Pager
+from pager import Pager # "pages output to the screen"
 
 
 def read_table(url):
@@ -11,7 +11,7 @@ def read_table(url):
         return [row for row in csv.DictReader(f.readlines())]
 
 
-APPNAME = "PrettyGalaxies"
+APPNAME = "HistopathologyImages"
 STATIC_FOLDER = 'example'
 TABLE_FILE = "example/fakecatalog.csv"
 
@@ -30,7 +30,7 @@ def index():
     return redirect('/0')
 
 
-@app.route('/<int:ind>/')
+@app.route('/<int:ind>/') # 'int' accepts integers, 'ind' ?
 def image_view(ind=None):
     if ind >= pager.count:
         return render_template("404.html"), 404
